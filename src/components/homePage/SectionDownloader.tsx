@@ -1,13 +1,23 @@
-import { Youtube, Smartphone, Music } from 'lucide-react';
 import { FromDownloader } from '../from';
+import { platformDownload } from '@/data';
+import { cn } from '@/util';
 
 // drop-shadow-[8px_8px_0px_#fff5]
-export const SectionDownloader = () => {
+interface Props {
+  className?: string;
+}
+
+export const SectionDownloader = ({
+  className,
+}: Props) => {
   return (
-    <section className='py-32 px-6 bg-primary'>
+    <section className={cn(
+      'bg-primary flex items-center justify-center py-10',
+      className
+    )}>
       <div className='container mx-auto max-w-6xl'>
         <div className='max-w-4xl'>
-          <h1 className='text-6xl md:text-8xl lg:text-9xl font-black leading-none mb-6 text-black transform -rotate-2'>
+          <h1 className='text-6xl md:text-6xl lg:text-8xl font-black leading-none mb-6 text-black transform -rotate-2 uppercase'>
             DESCARGAR
             <br />
             <span >
@@ -22,20 +32,19 @@ export const SectionDownloader = () => {
           <FromDownloader />
 
           <div className='flex items-center gap-8 mt-16 flex-wrap'>
-            <div className='flex items-center gap-3 text-black p-4 rounded-lg bg-white border-4 border-black shadow-6xl transform -rotate-1'>
-              <Youtube className='w-8 h-8 text-chart-6' />
-              <span className='font-black text-lg'>YouTube</span>
-            </div>
-
-            <div className='flex items-center gap-3 text-black p-4 rounded-lg bg-white border-4 border-black shadow-6xl transform rotate-1'>
-              <Smartphone className='w-8 h-8 text-chart-4' />
-              <span className='font-black text-lg'>TikTok</span>
-            </div>
-
-            <div className='flex items-center gap-3 text-black p-4 rounded-lg bg-white border-4 border-black shadow-6xl transform -rotate-1'>
-              <Music className='w-8 h-8 text-chart-2' />
-              <span className='font-black text-lg'>Audio MP3</span>
-            </div>
+            {
+              platformDownload.map(({ id, icon: Icon, name, color }) => (
+                <div
+                  key={id}
+                  className='flex items-center gap-3 text-black p-4 rounded-lg bg-white border-4 border-black shadow-7xl hover:shadow-6xl hover:translate-x-1 hover:translate-y-1 transition-all transform -rotate-1 group'
+                >
+                  <Icon className={cn('w-8 h-8 group-hover:shake', color)} />
+                  <span className='font-black text-lg'>
+                    {name}
+                  </span>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+// className='h-[calc(100vh-80px)]'
 import {
   Characteristics,
   FigureAnimation,
@@ -10,7 +11,7 @@ export default function VideoDownloaderPage() {
     <>
       <FigureAnimation />
 
-      <SectionDownloader />
+      <SectionDownloader className='min-h-[calc(100vh-5rem)]' />
 
       <Characteristics />
     </>

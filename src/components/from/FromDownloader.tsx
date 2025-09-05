@@ -1,8 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { Button, Card, CardContent, Input } from '../UI';
-import { AlertCircle, CheckCircle, Download } from 'lucide-react';
-
+import { Card, CardContent, InputDownloader } from '../UI';
+import { AlertCircle, CheckCircle } from 'lucide-react';
 
 export const FromDownloader = () => {
   const [url, setUrl] = useState('')
@@ -51,48 +50,25 @@ export const FromDownloader = () => {
   }
 
   return (
-    <Card className='max-w-2xl bg-white border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transform rotate-1'>
-      <CardContent className='p-6'>
-        <div className='flex flex-col sm:flex-row gap-4'>
-          <div className='flex-1'>
-            <Input
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder='Pega aquí el enlace de YouTube o TikTok...'
-              className='h-14 text-base bg-gray-100 border-4 border-black text-black placeholder:text-gray-600 focus:bg-white font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
-              disabled={isDownloading}
-            />
-          </div>
-          <Button
-            size='lg'
-            className='h-14 px-8 font-black bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all'
-            onClick={simulateDownload}
-            disabled={isDownloading}
-          >
-            {isDownloading ? (
-              <>
-                <div className='w-5 h-5 mr-2 border-4 border-white border-t-transparent rounded-full animate-spin'></div>
-                Procesando...
-              </>
-            ) : isComplete ? (
-              <>
-                <CheckCircle className='w-5 h-5 mr-2 text-white' />
-                ¡Completado!
-              </>
-            ) : (
-              <>
-                <Download className='w-5 h-5 mr-2' />
-                Descargar
-              </>
-            )}
-          </Button>
-        </div>
+    <Card className='max-w-2xl bg-white border-4 border-black shadow-7xl transform rotate-1'>
+      <CardContent className='p-6 px-10'>
+        <InputDownloader
+          isComplete={isComplete}
+          isDownloading={isDownloading}
+          onChange={(e) => setUrl(e.target.value)}
+          onClick={simulateDownload}
+          value={url}
+        />
 
         {(isDownloading || isComplete) && (
           <div className='mt-6 space-y-3'>
             <div className='flex items-center justify-between'>
-              <span className='text-sm text-black font-bold'>{downloadStage}</span>
-              <span className='text-sm text-black font-bold'>{downloadProgress}%</span>
+              <span className='text-sm text-black font-bold'>
+                {downloadStage}
+              </span>
+              <span className='text-sm text-black font-bold'>
+                {downloadProgress}%
+              </span>
             </div>
             <div className='h-6 bg-gray-200 rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden'>
               <div
@@ -103,7 +79,9 @@ export const FromDownloader = () => {
             {isComplete && (
               <div className='flex items-center gap-2 text-green-600 text-sm font-bold'>
                 <CheckCircle className='w-4 h-4' />
-                <span>Video descargado exitosamente</span>
+                <span>
+                  Video descargado exitosamente
+                </span>
               </div>
             )}
           </div>
@@ -112,7 +90,9 @@ export const FromDownloader = () => {
         {error && (
           <div className='mt-4 flex items-center gap-2 text-red-600 text-sm font-bold'>
             <AlertCircle className='w-4 h-4' />
-            <span>{error}</span>
+            <span>
+              {error}
+            </span>
           </div>
         )}
 

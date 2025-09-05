@@ -4,7 +4,7 @@ import { Card, CardContent } from '../UI';
 export const Characteristics = () => {
   return (
     <section className='relative z-10 py-20 px-6 bg-background border-t-4 border-b-4 border-border shadow-card'>
-      <div className='container mx-auto max-w-6xl'>
+      <section className='container mx-auto max-w-6xl'>
         <div className='text-center mb-16'>
           <h2 className='text-4xl md:text-5xl font-black mb-6 text-foreground transform -rotate-1'>
             ¿Porque deberías elegir?
@@ -21,9 +21,9 @@ export const Characteristics = () => {
                 key={id}
                 className={`${bg} border-4 border-border shadow-7xl hover:shadow-6xl hover:translate-x-1 hover:translate-y-1 transition-all transform ${rotate}`}
               >
-                <CardContent className='p-6'>
+                <CardContent className='p-6 group'>
                   <div className='w-16 h-16 bg-accent rounded-lg border-4 border-border flex items-center justify-center mb-4 shadow-6xl'>
-                    <Icon className='w-8 h-8 text-foreground' />
+                    <Icon className='w-8 h-8 text-foreground group-hover:jello' />
                   </div>
                   <h3 className='text-xl font-black mb-2 text-foreground'>
                     {title}
@@ -36,7 +36,7 @@ export const Characteristics = () => {
             ))
           }
         </div>
-      </div>
+      </section>
     </section>
   )
 }
