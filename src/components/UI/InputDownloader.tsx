@@ -14,6 +14,7 @@ export const InputDownloader = ({
   isComplete,
   onChange,
   onClick,
+  name = 'url',
   value = ''
 }: InputDownloaderProps) => {
 
@@ -44,6 +45,7 @@ export const InputDownloader = ({
         onChange={onChange}
         disabled={isDownloading}
         type='text'
+        name={name}
         placeholder='URL'
         className={cn(
           'w-full outline-none border-[3px] border-black',

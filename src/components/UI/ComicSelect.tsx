@@ -28,7 +28,7 @@ export function ComicSelect({
     setIsOpen(false)
   }
 
-  const selectedOption = options.find((option) => option.value === selectedValue)
+  const selectedOption = options.find((option) => option.value && option.label && option.value === selectedValue);
 
   return (
     <div className={`relative w-full max-w-xs ${className}`}>

@@ -2,7 +2,6 @@ import { FromDownloader } from '../from';
 import { platformDownload } from '@/data';
 import { cn } from '@/util';
 
-// drop-shadow-[8px_8px_0px_#fff5]
 interface Props {
   className?: string;
 }
@@ -15,23 +14,19 @@ export const SectionDownloader = ({
       'bg-primary flex items-center justify-center py-10',
       className
     )}>
-      <div className='container mx-auto max-w-6xl'>
-        <div className='max-w-4xl'>
-          <h1 className='text-6xl md:text-6xl lg:text-8xl font-black leading-none mb-6 text-black transform -rotate-2 uppercase'>
+      <div className='container mx-auto w-[90%] max-w-6xl grid md:grid-cols-2 gap-10 items-start justify-between'>
+        <div className='space-y-10'>
+          <h1 className={cn(
+            'text-4xl md:text-6xl lg:text-7xl font-black leading-none text-black transform -rotate-2 uppercase',
+            'text-center md:text-left'
+          )}>
             DESCARGAR
             <br />
             <span >
               VIDEO
             </span>
           </h1>
-
-          <p className='text-xl md:text-2xl text-black mb-12 max-w-lg font-black'>
-            descargar videos de youtube y de tiktok
-          </p>
-
-          <FromDownloader />
-
-          <div className='flex items-center gap-8 mt-16 flex-wrap'>
+          <div className='flex items-center gap-4 flex-wrap'>
             {
               platformDownload.map(({ id, icon: Icon, name, color }) => (
                 <div
@@ -47,6 +42,7 @@ export const SectionDownloader = ({
             }
           </div>
         </div>
+        <FromDownloader />
       </div>
     </section>
   )
