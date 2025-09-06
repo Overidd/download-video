@@ -5,7 +5,8 @@ import { validYouTubeUrl } from '@/service';
 import {
   Card,
   CardContent,
-  InputDownloader
+  InputDownloader,
+  LionfishLoadding
 } from '../UI';
 
 import {
@@ -58,7 +59,9 @@ export const FromDownloader = ({
     isLoading: isLoadingPreview,
   } = usePreviewDownloader()
 
-  useDebouncedEffect(() => {
+  const {
+    isLoading: isLoadingDebounce
+  } = useDebouncedEffect(() => {
     if (validate()) {
       setUrlDown(values.url);
       setUrlPreview(values.url);
@@ -70,7 +73,7 @@ export const FromDownloader = ({
       'max-w-2xl bg-white border-4 border-black shadow-7xl transform rotate-1',
       className
     )}>
-      <CardContent className='p-6 px-10 flex flex-col gap-4 relative'>
+      <CardContent className='p-4 md:p-6 px-5 md:px-10 flex flex-col gap-4 relative'>
         <InputDownloader
           value={values.url}
           onChange={handleChange}
@@ -79,10 +82,14 @@ export const FromDownloader = ({
           isDownloading={isLoadingDown}
         />
 
-        {/* <SelectOptionDownloader /> */}
         <PreviewDownloader
           infoPreview={infoPreview}
           isLoading={isLoadingPreview}
+        />
+
+        <LionfishLoadding
+          className='mx-auto'
+          isLoading={isLoadingDebounce}
         />
 
         {(isLoadingDown || isComplete) && (

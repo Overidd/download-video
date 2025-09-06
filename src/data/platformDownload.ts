@@ -1,8 +1,14 @@
 import { Music, Smartphone, Youtube } from 'lucide-react';
 
+export interface IplatformDownload {
+   id: number;
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   icon: any;
+   name: string;
+   color: string;
+}
 
-
-export const platformDownload = [
+export const platformDownload: IplatformDownload[] = [
    {
       id: 1,
       icon: Youtube,

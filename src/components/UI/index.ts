@@ -3,6 +3,8 @@ export * from './Card';
 export * from './Input';
 export * from './Footer';
 export * from './InputDownloader';
+export * from './LionfishLoadding';
 export * from './ComicSelect';
 export * from './CardLoadding';
 export * from './Badge';
+export * from './Title';
