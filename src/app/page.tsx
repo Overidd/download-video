@@ -10,9 +10,7 @@ export default function HomePage() {
     <>
       <FigureAnimation />
 
-      <SectionDownloader
-        className='min-h-[calc(100vh-5rem)]'
-      />
+      <SectionDownloader />
 
       <Characteristics />
     </>

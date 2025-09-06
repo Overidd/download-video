@@ -4,7 +4,7 @@ import { Card, CardContent } from '../UI';
 export const Characteristics = () => {
   return (
     <section className='relative z-10 py-20 px-6 bg-background border-t-4 border-b-4 border-border shadow-card'>
-      <section className='container mx-auto max-w-6xl'>
+      <div className='container mx-auto max-w-6xl'>
         <div className='text-center mb-16'>
           <h2 className='text-4xl md:text-5xl font-black mb-6 text-foreground transform -rotate-1'>
             ¿Porque deberías elegir?
@@ -36,7 +36,7 @@ export const Characteristics = () => {
             ))
           }
         </div>
-      </section>
+      </div>
     </section>
   )
 }
