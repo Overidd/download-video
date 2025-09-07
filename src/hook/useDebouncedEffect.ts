@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react";
+'use client';
+import { useEffect } from 'react';
 
 export const useDebouncedEffect = (
   effect: () => void,
   deps: React.DependencyList,
   delay: number
 ) => {
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (deps.length === 0 || deps.every((dep) => !Boolean(dep))) return;
 
-    setIsLoading(true);
     const handler = setTimeout(() => {
       effect();
-      setIsLoading(false);
     }, delay);
 
     return () => {
@@ -21,7 +19,4 @@ export const useDebouncedEffect = (
     };
   }, [...deps, delay]);
 
-  return {
-    isLoading
-  }
 };

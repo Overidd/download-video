@@ -8,6 +8,7 @@ export interface IVideoInfo {
   views: string;
   description: string;
   publishedAt: string;
+  url: string;
 }
 
 interface DownloadProgress {
@@ -60,15 +61,16 @@ export class YouTubeService {
       if (!response.ok) {
         throw new Error('Video not found or private');
       }
-
+      
       const data = await response.json();
 
       // Get additional metadata from YouTube's thumbnail service
       const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
       return {
-        id: videoId,
+        id: crypto.randomUUID() + videoId,
         title: data.title,
+        url: data.url,
         thumbnail: thumbnailUrl,
         duration: 'Unknown', // oEmbed doesn't provide duration
         channel: data.author_name,
@@ -82,6 +84,7 @@ export class YouTubeService {
         id: videoId,
         title: 'Video Title (Limited API Access)',
         thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+        url: `https://www.youtube.com/watch?v=${videoId}`,
         duration: 'Unknown',
         channel: 'Unknown Channel',
         views: 'Unknown',

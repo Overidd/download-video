@@ -53,7 +53,7 @@ const reducer = (state: DownloadState, action: Action): DownloadState => {
   }
 }
 
-export const useDownload = () => {
+export const useDownloadVideo = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const resetTimeout = useRef<NodeJS.Timeout | null>(null);
 

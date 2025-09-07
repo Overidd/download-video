@@ -13,7 +13,7 @@ interface InputConfig {
 interface UseInputReturn<T extends InputConfig> {
   values: { [K in keyof T]: string };
   errors: { [K in keyof T]?: string | null };
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   validate: () => boolean;
   reset: () => void;
 }
@@ -29,7 +29,7 @@ export const useInput = <T extends InputConfig>(config: T): UseInputReturn<T> =>
 
   const [errors, setErrors] = useState<{ [K in keyof T]?: string | null }>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues((prev) => ({
       ...prev,
@@ -69,7 +69,7 @@ export const useInput = <T extends InputConfig>(config: T): UseInputReturn<T> =>
   return {
     values,
     errors,
-    handleChange,
+    onChange,
     validate,
     reset,
   };

@@ -1,14 +1,14 @@
+'use client';
 import { useState } from 'react';
-import { IVideoInfo, YouTubeService } from '@/service';
+import { YouTubeService } from '@/service';
 
-export const usePreviewDownloader = () => {
+export const useYouTubeInfo = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setError] = useState<string | null>(null);
-  const [infoPreview, setInfoPreview] = useState<null | IVideoInfo>(null);
 
   const youtubeService = YouTubeService.getInstance();
 
-  const setUrl = async (url: string) => {
+  const loadInfo = async (url: string) => {
     if (!url && !youtubeService.isValidYouTubeUrl(url)) return;
 
     setIsLoading(true);
@@ -18,21 +18,19 @@ export const usePreviewDownloader = () => {
       if (videoId) {
         const info = await youtubeService.getVideoInfo(videoId);
         info.thumbnail = await youtubeService.validateThumbnail(videoId);
-        setInfoPreview(info);
+        return info;
       }
     } catch {
       setError('Error al obtener la información del video');
+      return null;
     } finally {
       setIsLoading(false);
     }
   };
 
-  // console.log('----', infoPreview)
-
   return {
-    infoPreview,
     messageError,
     isLoading,
-    setUrl,
+    loadInfo,
   }
 };

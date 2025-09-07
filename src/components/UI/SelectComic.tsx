@@ -2,22 +2,46 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/util';
+import { cva } from 'class-variance-authority';
 
-interface ComicSelectProps {
-  value?: string
-  className?: string
-  placeholder?: string
-  options: { value: string; label: string }[]
-  onChange?: (value: string) => void
+interface Props {
+  value?: string;
+  className?: string;
+  placeholder?: string;
+  options: { value: string; label: string }[];
+  variant?: 'default';
+  size?: 'sm' | 'base' | 'lg' | 'xl' | 'icon';
+  onChange?: (value: string) => void;
 }
 
-export function ComicSelect({
+const selectVariants = cva(
+  '',
+  {
+    variants: {
+      variant: {
+        default: '',
+      },
+      size: {
+        sm: 'h-7 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 py-4 text-sm',
+        base: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5 py-5 text-sm',
+        lg: 'h-12 rounded-md px-4 text-base',
+        xl: 'h-14 rounded-md px-4 has-[>svg]:px-5 text-lg',
+        icon: 'size-10 text-xl',
+      },
+      defaultVariants: {
+      },
+    }
+  })
+
+export const SelectComic = ({
   value,
   options,
   onChange,
-  className = '',
+  size = 'base',
+  variant = 'default',
   placeholder = 'Selecciona una opción',
-}: ComicSelectProps) {
+  className = '',
+}: Props) => {
 
   const [isOpen, setIsOpen] = useState(false)
   const [selectedValue, setSelectedValue] = useState(value || '')
@@ -31,25 +55,28 @@ export function ComicSelect({
   const selectedOption = options.find((option) => option.value && option.label && option.value === selectedValue);
 
   return (
-    <div className={`relative w-full max-w-xs ${className}`}>
+    <div className={`relative w-full max-w-xs`}>
       <button
         type='button'
         aria-expanded={isOpen}
         aria-haspopup='listbox'
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'hover:shadow-7xl',
-          'bg-primary ',
+          // 'border-4 border-black ',
+          // 'shadow-6xl active:shadow-5xl',
+          'bg-primary text-center',
           'rounded-none',
-          'w-full px-4 py-3 ',
-          'border-4 border-black ',
-          'shadow-6xl active:shadow-5xl',
+          'w-full px-2',
+          'shadow-none border-3',
+          'hover:shadow-6xl',
           'font-bold text-black text-left',
           'hover:translate-x-[-2px] hover:translate-y-[-2px]',
           'active:translate-x-[2px] active:translate-y-[2px]',
           'transition-all duration-150 ease-out',
           'flex items-center justify-between',
-          isOpen && 'shadow-5xl translate-x-[2px] translate-y-[2px]'
+          isOpen && 'shadow-5xl translate-x-[2px] translate-y-[2px]',
+          selectVariants({ variant, size }),
+          className
         )}
       >
         <span className='truncate'>{selectedOption ? selectedOption.label : placeholder}</span>
