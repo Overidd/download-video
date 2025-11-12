@@ -14,7 +14,7 @@ export const Footer = () => {
           La mejor herramienta para descargar videos de YouTube y TikTok de forma gratuita y segura.
         </p>
         <div className='text-sm text-gray-300 font-bold'>
-          <p>&copy; 2024 VideoGrab. Todos los derechos reservados.</p>
+          <p>&copy; 2025 VideoGrab. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

@@ -1,11 +1,6 @@
 
 export const navbarData = [
    {
-      id: 1,
-      name: 'descargas',
-      path: '/download',
-   },
-   {
       id: 2,
       name: 'caracteristicas',
       path: '#descargas',

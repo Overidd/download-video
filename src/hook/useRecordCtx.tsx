@@ -1,9 +1,9 @@
 'use client';
-import { DownloadCtx } from '@/context/download';
+import { RecordCtx } from '@/context/Record';
 import { useContext } from 'react';
 
-export const useDownloadCtx = () => {
-  const ctx = useContext(DownloadCtx);
+export const useRecordCtx = () => {
+  const ctx = useContext(RecordCtx);
 
   if (!ctx) throw new Error('useDownloadCtx must be used within a ProviderDownload');
 

@@ -7,10 +7,10 @@ import { ButtonComic } from '../UI/ButtonComic';
 interface Props {
   isLoading?: boolean;
   infoPreview?: IVideoInfo | null;
-  remove: (id: string) => void;
+  remove?: (id: string) => void;
 }
 
-export const PreviewDownloader = ({
+export const PreviewDownload = ({
   infoPreview,
   remove
 }: Props) => {
@@ -104,7 +104,7 @@ export const PreviewDownloader = ({
         size='icon'
         type='button'
         className='text-black'
-        onClick={() => remove(infoPreview.id)}
+        onClick={() => remove?.(infoPreview.id)}
       >
         <X />
       </ButtonComic>

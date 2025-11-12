@@ -29,7 +29,7 @@ export const ListMenu = ({
             key={id}
             href={path}
             className={cn(
-              'text-gray-500 hover:text-gray-800 transition-colors cursor-pointer',
+              'text-gray-500 hover:text-gray-800 transition-colors cursor-pointer capitalize',
               isActive(path) && 'text-gray-800'
             )}
           >

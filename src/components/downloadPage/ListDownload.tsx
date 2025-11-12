@@ -1,8 +1,7 @@
 'use client';
 import { cn } from '@/util';
-import { useDownloadCtx } from '@/hook';
-import { PreviewDownloader } from '../homePage';
-import { LionfishLoadding } from '../UI';
+import { useRecordCtx } from '@/hook';
+import { PreviewDownload } from './PreviewDownload';
 
 interface Props {
   className?: string
@@ -12,27 +11,20 @@ export const ListDownload = ({
   className
 }: Props) => {
   const {
-    isLoading,
-    downloaders,
-    removeDonwloader,
-  } = useDownloadCtx()
+    records,
+    removeRecord
+  } = useRecordCtx()
 
   return (
     <section className={cn(
       'flex flex-col gap-5',
       className
     )}>
-
-      <LionfishLoadding
-        className='mx-auto'
-        isLoading={isLoading}
-      />
-
-      {downloaders.map((downloader) => (
-        <PreviewDownloader
-          key={downloader.id}
-          remove={removeDonwloader}
-          infoPreview={downloader}
+      {records.map((record) => (
+        <PreviewDownload
+          key={record.id}
+          remove={removeRecord}
+          infoPreview={record}
           isLoading={false}
         />
       ))}

@@ -8,3 +8,4 @@ export * from './SelectComic';
 export * from './CardLoadding';
 export * from './Badge';
 export * from './Title';
+export * from './ButtonComic';

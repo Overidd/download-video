@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { YouTubeService } from '@/service';
+import { IVideoInfo, YouTubeService } from '@/service';
 
-export const useYouTubeInfo = () => {
+export const useDownloadInfo = () => {
+  const [info, setInfo] = useState<null | IVideoInfo>(null);
   const [isLoading, setIsLoading] = useState(false)
   const [messageError, setError] = useState<string | null>(null);
 
@@ -18,7 +19,7 @@ export const useYouTubeInfo = () => {
       if (videoId) {
         const info = await youtubeService.getVideoInfo(videoId);
         info.thumbnail = await youtubeService.validateThumbnail(videoId);
-        return info;
+        setInfo(info);
       }
     } catch {
       setError('Error al obtener la información del video');
@@ -32,5 +33,6 @@ export const useYouTubeInfo = () => {
     messageError,
     isLoading,
     loadInfo,
+    info
   }
 };

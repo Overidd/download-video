@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 
 import {
-  FromDownload,
-  ListDownload
+  ListDownload,
+  WrapperDownload
 } from '@/components/downloadPage';
 
 import {
-  ProviderDownload
-} from '@/context/download';
+  ProviderRecord
+} from '@/context/Record';
 import { cn } from '@/util';
 
 export const metadata: Metadata = {
@@ -21,14 +21,14 @@ export default function DownloadPage() {
       <div className={cn(
         'container mx-auto w-[90%] max-w-6xl',
       )}>
-        <ProviderDownload>
-          <FromDownload
+        <ProviderRecord>
+          <WrapperDownload
             className='mt-24 mx-auto'
           />
           <ListDownload
             className='my-10'
           />
-        </ProviderDownload>
+        </ProviderRecord>
       </div>
     </main>
   )
