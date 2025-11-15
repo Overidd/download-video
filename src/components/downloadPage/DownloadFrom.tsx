@@ -13,7 +13,7 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const FromDownload = ({
+export const DownloadFrom = ({
   className,
   onChange,
   url,

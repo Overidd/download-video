@@ -1,38 +1,60 @@
 'use client';
-import { useState } from 'react';
-import { IVideoInfo, YouTubeService } from '@/service';
+
+import { IPlaylistInfo, IVideoInfo } from '@/interface';
+import { DownloadService } from '@/service';
+import { Validate } from '@/util';
+import { useMemo, useState } from 'react';
+
+interface IState {
+  info: IVideoInfo | IPlaylistInfo | null;
+  isLoading: boolean;
+  messageError: string | null;
+}
 
 export const useDownloadInfo = () => {
-  const [info, setInfo] = useState<null | IVideoInfo>(null);
-  const [isLoading, setIsLoading] = useState(false)
-  const [messageError, setError] = useState<string | null>(null);
+  const [state, setState] = useState<IState>({
+    info: null,
+    isLoading: false,
+    messageError: null
+  });
 
-  const youtubeService = YouTubeService.getInstance();
+  const downloadService = useMemo(() => new DownloadService(), []);
 
   const loadInfo = async (url: string) => {
-    if (!url && !youtubeService.isValidYouTubeUrl(url)) return;
+    if (!url || !Validate.urlDownload(url)) {
+      setState(prev => ({
+        ...prev,
+        messageError: "URL inválida"
+      }));
+      return;
+    }
 
-    setIsLoading(true);
+    // Start loading
+    setState({
+      info: null,
+      isLoading: true,
+      messageError: null
+    });
 
     try {
-      const videoId = youtubeService.extractVideoId(url);
-      if (videoId) {
-        const info = await youtubeService.getVideoInfo(videoId);
-        info.thumbnail = await youtubeService.validateThumbnail(videoId);
-        setInfo(info);
-      }
-    } catch {
-      setError('Error al obtener la información del video');
-      return null;
-    } finally {
-      setIsLoading(false);
+      const info = await downloadService.getInfo(url);
+      setState({
+        info,
+        isLoading: false,
+        messageError: null
+      });
+
+    } catch (error) {
+      setState({
+        info: null,
+        isLoading: false,
+        messageError: error instanceof Error ? error.message : "Error desconocido"
+      });
     }
   };
 
   return {
-    messageError,
-    isLoading,
     loadInfo,
-    info
-  }
+    ...state,
+  };
 };

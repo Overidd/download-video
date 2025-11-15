@@ -3,11 +3,11 @@ import { AlertCircle } from 'lucide-react';
 
 interface Props {
   className?: string;
-  url: string;
+  message: string;
 }
 
-export const ErrorDonwload = ({
-  url,
+export const DonwloadError = ({
+  message,
   className
 }: Props) => {
 
@@ -17,7 +17,7 @@ export const ErrorDonwload = ({
       className
     )}>
       <AlertCircle className='w-4 h-4' />
-      {url}
+      {message}
     </div>
   )
 }

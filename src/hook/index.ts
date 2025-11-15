@@ -1,4 +1,4 @@
-export * from './useDownloadVideo';
+export * from './useDownloadState';
 export * from './useDownloadInfo';
 export * from './useDebouncedEffect';
 export * from './useDownloadMedia';

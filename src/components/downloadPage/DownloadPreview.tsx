@@ -1,23 +1,20 @@
-import { Download, Eye, Play, X } from 'lucide-react';
-import { IVideoInfo } from '@/service';
-import { Badge, Card, SelectComic } from '../UI';
 import Image from 'next/image';
+import { Download, Eye, Play, X } from 'lucide-react';
 import { ButtonComic } from '../UI/ButtonComic';
+import { Badge, Card, SelectComic } from '../UI';
+import { IDownloadOptions, IPlaylistInfo, IVideoInfo } from '@/interface';
 
 interface Props {
-  isLoading?: boolean;
-  infoPreview?: IVideoInfo | null;
-  remove?: (id: string) => void;
+  info?: IVideoInfo | IPlaylistInfo;
+  error: string | null;
+  startDownload: (options: IDownloadOptions) => void;
 }
 
-export const PreviewDownload = ({
-  infoPreview,
-  remove
-}: Props) => {
 
-  if (!infoPreview) {
-    return null;
-  }
+//TODO: Agregar componentes Preview Video y Preview Playlist. Uno de ellos debe ser mostrado dependiendo del _tipo
+export const DownloadPreview = ({
+  info = {} as IVideoInfo,
+}: Props) => {
 
   return (
     <Card className='p-4 bg-gray-50 shadow-5xl flex flex-row gap-4 relative'>
@@ -26,14 +23,14 @@ export const PreviewDownload = ({
       /> */}
       <section className='relative'>
         <Image
-          src={infoPreview.thumbnail}
-          alt={infoPreview.title}
+          src={info.thumbnail}
+          alt={info.title}
           className='w-40 h-30 object-cover rounded-lg'
           // onError={onHandleImg}
           width={400}
           height={300}
         />
-        <a href={infoPreview.url} target='_blank'>
+        <a href={info.url} target='_blank'>
           <div
             className='absolute inset-0 bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer'
           >
@@ -44,7 +41,7 @@ export const PreviewDownload = ({
 
       <section className='flex-1 space-y-2'>
         <h3 className='font-medium line-clamp-2'>
-          {infoPreview.title}
+          {info.title}
         </h3>
         <div className='flex flex-wrap gap-2 text-sm text-gray-600'>
           <Badge
@@ -52,20 +49,20 @@ export const PreviewDownload = ({
             className='flex items-center gap-1'
           >
             <Eye className='w-3 h-3' />
-            {infoPreview.channel}
+            {info.channel}
           </Badge>
-          {infoPreview.duration !== 'Unknown' && (
+          {info.duration !== 'Unknown' && (
             <Badge
               variant='outline'
               className='flex items-center gap-1'
             >
               <Play className='w-3 h-3' />
-              {infoPreview.duration}
+              {info.duration}
             </Badge>
           )}
-          {infoPreview.views !== 'Unknown' && (
+          {info.views !== 'Unknown' && (
             <Badge variant='outline'>
-              {infoPreview.views}
+              {info.views}
             </Badge>
           )}
         </div>
@@ -104,7 +101,7 @@ export const PreviewDownload = ({
         size='icon'
         type='button'
         className='text-black'
-        onClick={() => remove?.(infoPreview.id)}
+        onClick={() => remove?.(info.id)}
       >
         <X />
       </ButtonComic>
@@ -113,7 +110,7 @@ export const PreviewDownload = ({
 }
 
 // const onHandleImg = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-//   e.currentTarget.src = `https://img.youtube.com/vi/${infoPreview?.id}/hqdefault.jpg`;
+//   e.currentTarget.src = `https://img.youtube.com/vi/${info?.id}/hqdefault.jpg`;
 // }
 
 // "<iframe width="200" height="113" src="https://www.youtube.com/embed/xAaxUUwkkYY?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="🚨 URGENTE: DONALD TRUMP AMENAZA A MADURO | AGUSTÍN LAJE Y CARLOS RUCKAUF"></iframe>"

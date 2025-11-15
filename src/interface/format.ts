@@ -1,8 +1,24 @@
 
-export type TFormatMedia =
+
+export interface IPlaylistOptions {
+  includeIds?: string[];
+  limit?: number;
+}
+
+export type TFormatVideo =
   | 'mp4'
   | 'webm'
   | 'mov'
+
+export type TFormatAudio =
+  | 'aac'
+  | 'flac'
+  | 'mp3'
+  | 'm4a'
+  | 'opus'
+  | 'vorbis'
+  | 'wav'
+  | 'alac';
 
 export type TFormatIdVideo =
   | '160' // 144p

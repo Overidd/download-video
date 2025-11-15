@@ -1,2 +1,1 @@
-export * from './YouTubeService';
-export * from './infoDownload';
+export * from './DownloadService';

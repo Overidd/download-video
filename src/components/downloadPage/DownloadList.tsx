@@ -1,13 +1,13 @@
 'use client';
 import { cn } from '@/util';
 import { useRecordCtx } from '@/hook';
-import { PreviewDownload } from './PreviewDownload';
+import { DownloadPreview } from './DownloadPreview';
 
 interface Props {
   className?: string
 }
 
-export const ListDownload = ({
+export const DownloadList = ({
   className
 }: Props) => {
   const {
@@ -21,7 +21,7 @@ export const ListDownload = ({
       className
     )}>
       {records.map((record) => (
-        <PreviewDownload
+        <DownloadPreview
           key={record.id}
           remove={removeRecord}
           infoPreview={record}

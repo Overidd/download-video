@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 import {
-  ListDownload,
-  WrapperDownload
+  DownloadList,
+  DownloadWrapper
 } from '@/components/downloadPage';
 
 import {
@@ -22,10 +22,10 @@ export default function DownloadPage() {
         'container mx-auto w-[90%] max-w-6xl',
       )}>
         <ProviderRecord>
-          <WrapperDownload
+          <DownloadWrapper
             className='mt-24 mx-auto'
           />
-          <ListDownload
+          <DownloadList
             className='my-10'
           />
         </ProviderRecord>

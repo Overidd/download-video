@@ -1,4 +1,4 @@
-export interface VideoProgress {
+export interface IVideoProgress {
   id: string;                    // Video ID
   filename: string;              // File name
   status: 'downloading' | 'finished';  // Current status

@@ -6,7 +6,7 @@ interface Props {
   isLoading?: boolean
 }
 
-export const LionfishLoadding = ({
+export const LoaddingLionfish = ({
   className,
   isLoading
 }: Props) => {
