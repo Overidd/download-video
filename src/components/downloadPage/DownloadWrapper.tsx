@@ -67,8 +67,10 @@ export const DownloadWrapper = ({ className }: Props) => {
     if (status === 'finished') {
       setRecord(info, status);
     }
-  }, [status, info]);
+  }, [status, info, setRecord]);
 
+  const isPreview = loadingInfo && status === 'idle' && info;
+  const isDownloading = (status === 'downloading' || status === 'paused') && progress && info;
   const error = errors.url ?? errorInfo ?? errorMedia;
 
   return (
@@ -93,14 +95,14 @@ export const DownloadWrapper = ({ className }: Props) => {
         isLoading={loadingInfo}
       />
 
-      {loadingInfo && status === 'idle' && info && (
+      {isPreview && (
         <DownloadPreview
           info={info}
           startDownload={startDownload}
         />
       )}
 
-      {status !== 'idle' && progress && info && (
+      {isDownloading && (
         <DownloadTask
           info={info}
           progress={progress}

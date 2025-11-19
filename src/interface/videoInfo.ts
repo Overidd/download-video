@@ -105,6 +105,7 @@ export interface VideoFormat {
   protocol: string;
   vcodec: string;
   acodec: string;
+  filesize_approx?: number;
 }
 
 export interface VideoThumbnail {

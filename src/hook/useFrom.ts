@@ -220,7 +220,8 @@ export function useForm<T extends Record<string, any>>({
 
   const onValueChange = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (e: React.ChangeEvent<HTMLInputElement> | { name: string; value: any; type?: string }) => {
+    (e: React.ChangeEvent<HTMLInputElement> | { name: string; value: string | any | unknown; type?: string }) => {
+
       if (!e) return;
       const name = 'target' in e ? e.target.name : e.name;
       let value = 'target' in e ? e.target.value : e.value;

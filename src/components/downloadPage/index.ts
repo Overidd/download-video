@@ -5,3 +5,5 @@ export * from './DonwloadError';
 export * from './DownloadPreview';
 export * from './DownloadProgress';
 export * from './DownloadActions';
+export * from './DownloadVideoForm';
+export * from './DownloadPlaylistForm';

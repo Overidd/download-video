@@ -6,8 +6,8 @@ export type IDownloadOptions =
   | {
     url: string;
     type: 'video';
-    formatIdVideo?: TFormatIdVideo;
-    formatIdAudio?: TFormatIdAudio;
+    formatIdVideo?: TFormatIdVideo | null;
+    formatIdAudio?: TFormatIdAudio | null;
     videoOnly?: boolean;
     audioOnly?: boolean;
     format: TFormatVideo | TFormatAudio;
@@ -35,4 +35,9 @@ export interface IEvents {
   onCanceled?: () => void;
   onError?: (error: string) => void;
   onFinished?: () => void;
+}
+
+export interface ITypeFormat {
+  formatIdVideo?: TFormatIdVideo | null;
+  formatIdAudio?: TFormatIdAudio | null;
 }

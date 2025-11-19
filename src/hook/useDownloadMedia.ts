@@ -1,9 +1,8 @@
 'use client';
 
 import { useMemo, useState, useRef } from 'react';
-import { IVideoProgress, TStatus } from '@/interface';
+import { IDownloadOptions, IVideoProgress, TStatus } from '@/interface';
 import { DownloadService } from '@/service';
-import { IOptionsDownload } from '@/service/DownloadService';
 
 export const useDownloadMedia = () => {
 
@@ -15,7 +14,7 @@ export const useDownloadMedia = () => {
 
   const wsRef = useRef<WebSocket | null>(null);
 
-  const startDownload = async (options: IOptionsDownload) => {
+  const startDownload = async (options: IDownloadOptions) => {
     setStatus('downloading');
     setProgress(null);
 

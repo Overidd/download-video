@@ -1,10 +1,11 @@
 // downloadStateReducer.ts
-import { IVideoInfo } from "@/interface";
+
+import { IPlaylistInfo, IVideoInfo } from '@/interface';
 
 export interface DownloadStateInput {
   status: string;
   loadingInfo: boolean;
-  info: IVideoInfo | null;
+  info: IVideoInfo | IPlaylistInfo | null;
   errors: {
     url?: string | null;
     info?: string | null;
@@ -24,7 +25,7 @@ export const useDownloadState = ({
   info,
   errors,
 }: DownloadStateInput): DownloadStateOutput => {
-  const isPreview = !loadingInfo && info && status === "idle";
+  const isPreview = !loadingInfo && info && status === 'idle"';
 
   const isDownloading =
     status === "downloading" ||
